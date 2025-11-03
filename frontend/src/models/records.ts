@@ -6,11 +6,11 @@ export type RecordResponse = {
 export type RecordItem = {
     id: number,
     moment: string,
-    name: String,
+    name: string,
     age: number,
     gameTitle: String,
     gamePlatform: Platform,
-    genreName: String,
+    genreName: string,
 }
 
 export type Platform = 'XBOX' | 'PC' | 'PLAYSTATION';
