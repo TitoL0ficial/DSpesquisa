@@ -7,8 +7,8 @@ import {
   Play_400Regular,
   Play_700Bold,
 } from '@expo-google-fonts/play';
-import Header from './src/components/Header';
-import Home from './src/pages/Home';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Routes from './src/routes';
 
 export default function App() {
 
@@ -42,17 +42,15 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Header/>
-      <Home/>
-      <StatusBar style="light" />
-    </View>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Routes />
+        <StatusBar style="light" />
+      </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0B1F34',
   }
 });

@@ -1,24 +1,42 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Text, StyleSheet, View, Image } from "react-native";
+import { Text, StyleSheet, View, Image, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from "../../types/navigation";
 
 export default function Header () {
 
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  function handleOnPress () {
+    navigation.navigate('Home');
+  }
+
     return (
-        <View style={styles.header}>
-            <Image source={require('../../assets/logo.png')}/>
-            <Text style={styles.textLogo1}>Big Game</Text>
-            <Text style={styles.textLogo2}>Survey</Text>
-        </View>
+      <SafeAreaView style={styles.safeArea}>
+        <StatusBar style="dark" backgroundColor="#37474F" />
+        <Pressable onPress={handleOnPress}>
+          <View style={styles.header}>
+              <Image source={require('../../assets/logo.png')}/>
+              <Text style={styles.textLogo1}>Big Game</Text>
+              <Text style={styles.textLogo2}>Survey</Text>
+          </View>
+        </Pressable>   
+      </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: '#37474F',
+  },
   header: {
     height: 50,
     backgroundColor: '#37474F',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   textLogo1: {
     fontWeight: 'bold',

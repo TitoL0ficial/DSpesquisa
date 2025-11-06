@@ -2,29 +2,35 @@ import React from 'react';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import { Text, StyleSheet, View, Image, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+import Header from '../../components/Header';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../types/navigation';
 
 export default function Home () {
 
-    const handleOnPress = () => {
-        Alert.alert('Você ciclou no botão!')
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+    function handleOnPress () {
+        navigation.navigate('CreateRecord');
     }
 
     return (
         <>
+            <Header />
             <View style={styles.container}>
                 <Image style={styles.gamerImage} source={require('../../assets/gamer.png')}/>
                 <Text style={styles.title}>Vote agora</Text>
                 <Text style={styles.subTitle}>Nos diga qual é seu jogo favorito!</Text>
-            </View>
-            <View style={styles.footer}>
-                <RectButton style={styles.button} onPress={handleOnPress}>
-                    <Text style={styles.buttonText}>COLETAR DADOS</Text>
-                    <View style={styles.buttonIcon}>
-                        <Text>
-                            <Icon name="chevron-right" color="#fff" size={25}/>
-                        </Text>
-                    </View>
-                </RectButton>
+                <View style={styles.footer}>
+                    <RectButton style={styles.button} onPress={handleOnPress}>
+                        <Text style={styles.buttonText}>COLETAR DADOS</Text>
+                        <View style={styles.buttonIcon}>
+                            <Text>
+                                <Icon name="chevron-right" color="#fff" size={25}/>
+                            </Text>
+                        </View>
+                    </RectButton>
+                </View>
             </View>
         </>
     );
@@ -32,9 +38,9 @@ export default function Home () {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop:  '15%',
-        backgroundColor: '#0B1F34',
+        paddingTop:  '15%',
         alignItems: 'center',
+        flex: 1,
     },
     gamerImage: {
         width: 309,
